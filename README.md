@@ -60,7 +60,8 @@ FROM python:3.6
 COPY app /app
 ENV NAME Nina
 RUN pip install requests
-CMD python /app/more-real-app.py
+WORKDIR /app
+CMD python app.py
 ```
 
 Build the image
@@ -98,3 +99,30 @@ name=os.getenv('NAME', "Ivy")
 r = requests.get("https://api.genderize.io/?name="+name)
 print(r.text)
 ```
+
+# command line
+
+## Print Working Directory
+pwd
+
+## List what is inside current folder
+ls -l
+
+## Create empty directory
+mkdir <directory name>
+
+## Change directory
+cd <directory name>
+
+## Create empty file
+touch <filename>
+
+## List file content
+cat <filename>
+less <filename>
+
+## Print stuff
+echo "HI!"
+
+## Remove folder
+rm -r apple/
