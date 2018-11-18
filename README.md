@@ -58,7 +58,9 @@ Make a file called `Dockerfile` in a folder
 ```
 FROM python:3.6
 COPY app /app
-CMD python /app/app.py
+ENV NAME Nina
+RUN pip install requests
+CMD python /app/more-real-app.py
 ```
 
 Build the image
@@ -79,14 +81,20 @@ docker run -it --rm pink
 More code in `real-app.py` see https://genderize.io/
 ```
 import requests
-r = requests.get("https://api.genderize.io/?name=peter")
+r = requests.get("https://api.genderize.io/?name=mariana")
 print(r.text)
 ```
 
+## Env variables
+Run docker with env variable defined
+```
+docker run --env NAME="Eva" -it --rm pink bin/bash
+```
 Even more code for `more-real-app.py`
 ```
 import requests
 import os
-r = requests.get("https://api.genderize.io/?name=peter")
+name=os.getenv('NAME', "Ivy")
+r = requests.get("https://api.genderize.io/?name="+name)
 print(r.text)
 ```
